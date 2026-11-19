@@ -1,44 +1,58 @@
-# Practice Challenge: Toy Tales
+# Toy Tales
 
-You've got a friend in need! Again!
+Toy Tales is a small React application for browsing and managing a collection of toys. Toy records are stored in `db.json` and served through a JSON Server REST API.
 
-Andy has misplaced of his toys (again) and need your help to organize them.
+## Requirements
 
-## Setup
+- Node.js and npm
 
-All the information about Andy's toys can be found in the `db.json` file. We'll
-be using `json-server` to create a RESTful API for our database.
+## Run Locally
 
-Run `npm install` to install our dependencies.
+Install dependencies:
 
-Then, run `npm run server` to start up `json-server` on `http://localhost:3001`.
+```sh
+npm install
+```
 
-In another tab, run `npm run dev` to start up our React app at `http://localhost:3000`.
+Start the backend in one terminal:
 
-In another tab, run `npm run test` to run the test suite.
+```sh
+npm run server
+```
 
-Before you start building out the application, the first step that you should
-take is to examint the current code and component hierarchy. This will tell you 
-how components can pass data to each other as well as where that information should 
-be stored.
+The API is available at `http://localhost:3001/toys`.
 
-## Deliverables
+Start the React application in another terminal:
 
-- _When our application loads_, make a GET request to `/toys` to fetch the toy
-  array. Given your component tree, think about which component should be
-  responsible for the array. After you have put the data in the proper
-  component, your next job is to render the `ToyCard` components on the page.
+```sh
+npm run dev
+```
 
-- _When the `ToyForm` is submitted_, make a POST request to `/toys` to save a
-  new toy to the server. Using the ideas of controlled form and inverse data
-  flow, think about how to render a new `ToyCard` for the toy that you created.
+Open the local URL printed by Vite (normally `http://localhost:5173`). Keep both processes running while using the app.
 
-- _When the `Donate to Goodwill` button is clicked_, make a DELETE request to
-  `/toys/:id` with the ID of the toy that was clicked to delete the toy from the
-  server. The `ToyCard` that you clicked on should also be removed from the DOM.
+## Features
 
-- _When the like button is clicked_, make a PATCH request to `/toys/:id` with
-  the id of the toy that was clicked, along with the new number of likes (this
-  should be sent in the body of the PATCH request, as a object:
-  `{ likes: 10 }`), to update the toy on the server. Clicking on the button
-  should also increase the number of likes on the DOM.
+- Loads and displays toys from the backend when the page opens.
+- Creates toys through the form, initializing each toy with zero likes.
+- Increments likes and persists the new count to the backend.
+- Donates a toy by deleting it from the backend and the page.
+- Shows an error message when an API request fails.
+
+## Tests
+
+Run the test suite once:
+
+```sh
+npm run test -- --run
+```
+
+Run ESLint and create a production build:
+
+```sh
+npm run lint
+npm run build
+```
+
+## Screenshot
+
+![Toy Tales application showing the toy collection](public/toy-tales-screenshot.png)
